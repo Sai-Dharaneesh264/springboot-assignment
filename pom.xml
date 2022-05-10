@@ -96,4 +96,13 @@
                     <execution>
                         <id>report</id>
                         <phase>prepare-package</phase>
-                        <goals>g
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
