@@ -11,3 +11,5 @@ public class RestaurantManagementSystemApplication {
     }
 
 }
+//f7696fc593b9109e9309fb750ccc12cd69759ffd
+//mvn clean package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=Sai-Dharaneesh264 -Dsonar.login=f7696fc593b9109e9309fb750ccc12cd69759ffd
