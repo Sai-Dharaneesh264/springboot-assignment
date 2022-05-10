@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Orders</title>
+    
+        <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}">
+        <link rel="stylesheet" href="/css/orders.css">
+        <link rel="stylesheet" href="/css/modal.css">
+        <link rel="stylesheet" href="/css/cart.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <style>
+        .heads {
+            text-align: center;
+        }
+    </style>
+
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="page-header" th:replace="fragments/general :: pageHeader(title=' / Orders', userData=${user})"/>
+            <div class="nav side-nav" th:replace="fragments/general :: sideNav"/>
+            <div class="main">
+                <div class="tableWrapper">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                        <tr class="heads">
+                            <th>
+                                <label onclick="window.location='/orders?sort=id'" class="row-label">Order ID</label>
+                            </th>
+                            <th>
+                                <label onclick="window.location='/orders?sort=table'" class="row-label">Table Number</label>
+                            </th>
+                            <th>
+                                <label onclick="window.location='/orders?sort=date'" class="row-label">Date</label>
+                            </th>
+                            <th>
+                                <label onclick="window.location='/orders?sort=price'" class="row-label">Price</label>
+                            </th>
+                            <th>
+                                <label class="row-label">Item Count</label>
+                            </th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order : ${orders}">
+                            <td>
+                                <p th:text="${order.orderId}"></p>
+                            </td>
+                            <td>
+                                <p th:text="${order.table.tableId}"></p>
+                            </td>
+                            <td>
+                                <p th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm:ss')}"></p>
+                            </td>
+                            <td>
+                                <p th:text="${order.totalPrice}"></p>
+                            </td>
+                            <td>
+                                <p th:text="${#lists.size(order.items)}"></p>
+                            </td>
+                            <td>
+                                <a class="linkButton btn btn-info btn-sm" th:href="'/api/order/'+${order.orderId+'/details'}">Details</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="result-detail" th:if="${totalCash}">
+                        <span>Total Cash: </span>
+                        <span id="price-unit">Rs.</span>
+                        <span id="totalCash" th:text="${totalCash}"></span>
+                    </div>
+                </div>
+                <div id="filterControls">
+                    <div class="filterBox">
+                        <h2>Filter by Date interval</h2>
+                        <label class="filter-title">From</label>
+                        <input id="startDate" type="date">
+                        
+                        <label class="filter-title">To</label>
+                        <input id="endDate" type="date">
+                        
+                        <button id="filterByIntervalButton" onclick="filterByDateInterval()">Filter</button>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+        <script src="/js/dropdownUtils.js" th:src="@{/js/dropdownUtils.js}"></script>
+        <script src="/js/modalUtils.js" th:src="@{/js/modalUtils.js}"></script>
+        <script src="/js/orders.js" th:src="@{/js/orderUtils.js}"></script>
+    </body>
+</html>

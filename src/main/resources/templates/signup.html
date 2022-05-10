@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
+    <title>Signup</title>
+
+</head>
+<body>
+    <div class="wrapper">
+        <form action="#" th:action="@{/register}" method="post" th:object="${userData}">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2 class="big-title">Register</h2>
+                    <h3 class="small-title">For an employee account</h3>
+                </div>
+                <div class="form-body">
+                    <label for="firstName">First Name</label>
+                    <input type="text" name="firstName" id="firstName" placeholder="First Name" th:field="*{firstName}">
+
+                    <label for="lastName">Last Name</label>
+                    <input type="text" name="lastName" id="lastName" placeholder="Last Name" th:field="*{lastName}">
+
+                    <label for="input-email">E-Mail</label>
+                    <input type="email" name="emailField" id="input-email" placeholder="E-Mail" th:field="*{email}">
+
+                    <label for="input-password">Password</label>
+                    <input type="password" name="passwordField" id="input-password" placeholder="Password" th:field="*{password}">
+
+                    <input type="submit" id="submitButton" value="Sign Up"/>
+                </div>
+                <div class="form-footer">
+                    <p class="alert">This is a request information form. By filling this form, you are requesting for an employee account. Your authorisation will be assigned by managers</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="/js/modal_utils.js"></script>
+    <script src="/js/signup.js"></script>
+</body>
+</html>
